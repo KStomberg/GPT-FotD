@@ -1,9 +1,13 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const random = require('random');
+require('dotenv').config();
+const envVariables = process.env;
+const {
+    SECRET
+  } = envVariables;
 
-// Replace TOKEN with your bot's token
-client.login('TOKEN');
+// Pulled token from .env
+client.login(SECRET);
 
 client.on('ready', () => {
     console.log(`${client.user.tag} has connected to Discord!`);

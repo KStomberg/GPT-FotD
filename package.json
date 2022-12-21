@@ -1,0 +1,29 @@
+{
+  "name": "gpt-fotd",
+  "version": "1.0.0",
+  "description": "a discord bot to use GPT-3 to generate facts daily",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KStomberg/GPT-FotD.git"
+  },
+  "author": "KStomberg, TrulyTails",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KStomberg/GPT-FotD/issues"
+  },
+  "homepage": "https://github.com/KStomberg/GPT-FotD#readme",
+  "dependencies": {
+    "discord.js": "^14.7.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.5",
+    "babel-loader": "^9.1.0",
+    "dotenv": "^16.0.3",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  }
+}
