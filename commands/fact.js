@@ -9,7 +9,7 @@ const openai = new OpenAIApi(configuration);
 let fact = '';
 
 async function generateFact() {
-	const prompt = 'Tell me a fact about an important person in history';
+	const prompt = 'Tell me a fact about an important person in history 113';
 
 	const response = await openai.createCompletion({
 		model: 'text-davinci-003',
@@ -19,7 +19,8 @@ async function generateFact() {
 	});
 
 	console.log(response.data.choices);
-	fact = response.data.choices[0].text;
+	fact = `Here is a random fact <@&1033340899461173320> ${response.data.choices[0].text}`;
+	console.log(fact);
 }
 
 module.exports = {
