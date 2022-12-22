@@ -1,18 +1,33 @@
 const { SlashCommandBuilder } = require('discord.js');
+const { Configuration, OpenAIApi } = require('openai');
+const { openaiSecretKey } = require('../config.json');
+const configuration = new Configuration({
+	apiKey: openaiSecretKey,
+});
+const openai = new OpenAIApi(configuration);
 
-// A list of interesting facts
-const facts = [
-    "Did you know that the world's oldest known living tree is a bristlecone pine located in the White Mountains of California? This tree, known as 'Methuselah,' is over 5,000 years old!",
-    "The human nose can detect over 1 trillion different scents!",
-    "The shortest war in history was between Britain and Zanzibar on August 27, 1896. Zanzibar surrendered after just 38 minutes.",
-    "The longest word in the English language, according to the Guinness Book of World Records, is pneumonoultramicroscopicsilicovolcanoconiosis, which is a lung disease caused by the inhalation of very fine silicate or quartz dust."
-]
+let fact = '';
+
+async function generateFact() {
+	const prompt = 'Tell me a fact about an important person in history';
+
+	const response = await openai.createCompletion({
+		model: 'text-davinci-003',
+		prompt: prompt,
+		temperature: 0,
+		max_tokens: 100,
+	});
+
+	console.log(response.data.choices);
+	fact = response.data.choices[0].text;
+}
 
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('fact')
 		.setDescription('Replies with a random fact'),
 	async execute(interaction) {
-		await interaction.reply(facts[0]);
+		await generateFact();
+		await interaction.reply(fact);
 	},
 };
